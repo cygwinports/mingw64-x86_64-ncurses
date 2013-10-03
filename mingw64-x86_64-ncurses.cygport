@@ -1,0 +1,83 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross
+
+NAME="mingw64-x86_64-ncurses"
+VERSION=5.9
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="ncurses for Win64 toolchain"
+DESCRIPTION="The ncurses (new curses) library is a free software emulation of
+curses in System V Release 4.0, and more. It uses terminfo format, supports
+pads and color and multiple highlights and forms characters and function-key
+mapping, and has all the other SYSV-curses enhancements over BSD curses."
+HOMEPAGE="http://invisible-island.net/ncurses/"
+SRC_URI="ftp://invisible-island.net/ncurses/ncurses-${VERSION}.tar.gz"
+SRC_DIR="ncurses-${VERSION}"
+PATCH_URI="
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130504-patch.sh.bz2
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130511.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130518.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130525.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130608.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130615.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130622.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130706.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130713.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130720.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130727.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130805.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130816.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130824.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130831.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130907.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130921.patch.gz
+	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130928.patch.gz
+"
+
+src_compile() {
+	cd ${B}
+	cygconf	\
+		--with-pkg-config-libdir=${CROSS_LIBDIR}/pkgconfig \
+		--with-install-prefix=${D} \
+		--without-debug --disable-relink --disable-rpath \
+		--with-shared --with-cxx --with-cxx-shared --without-ada \
+		--enable-widec \
+		--disable-home-terminfo --enable-database --enable-sp-funcs \
+		--enable-term-driver --enable-interop --disable-termcap \
+		--with-pkg-config --enable-pc-files --enable-overwrite --enable-echo
+
+	cygmake
+}
+
+src_install() {
+	cd ${B}
+	make install.libs install.includes DESTDIR=${D}
+
+	dodir ${CROSS_INCLUDEDIR}/ncurses{,w}
+	pushd ${D}${CROSS_INCLUDEDIR}/ncurses
+	ln -s ../*.h .
+	popd
+	pushd ${D}${CROSS_INCLUDEDIR}/ncursesw
+	ln -s ../*.h .
+	popd
+
+	pushd ${D}${CROSS_LIBDIR}
+	for l in lib*.a
+	do
+		ln -s ${l} ${l/w/}
+	done
+	dosym libncursesw.a ${CROSS_LIBDIR}/libcurses.a
+	dosym libncursesw.dll.a ${CROSS_LIBDIR}/libcurses.dll.a
+	popd
+
+	pushd ${D}${CROSS_LIBDIR}/pkgconfig
+	for f in *.pc
+	do
+		ln -s ${f} ${f/w/}
+	done
+	popd
+
+	dosym ncursesw5-config ${CROSS_BINDIR}/ncurses5-config
+}
+
+KEEP_LA_FILES="none"
