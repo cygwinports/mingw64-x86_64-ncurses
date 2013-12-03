@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-ncurses"
-VERSION=5.9
+VERSION=5.9-20131116
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="ncurses for Win64 toolchain"
@@ -11,27 +11,35 @@ curses in System V Release 4.0, and more. It uses terminfo format, supports
 pads and color and multiple highlights and forms characters and function-key
 mapping, and has all the other SYSV-curses enhancements over BSD curses."
 HOMEPAGE="http://invisible-island.net/ncurses/"
-SRC_URI="ftp://invisible-island.net/ncurses/ncurses-${VERSION}.tar.gz"
-SRC_DIR="ncurses-${VERSION}"
+SRC_URI="ftp://invisible-island.net/ncurses/ncurses-${VERSION%-*}.tar.gz"
+SRC_DIR="ncurses-${VERSION%-*}"
 PATCH_URI="
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130504-patch.sh.bz2
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130511.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130518.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130525.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130608.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130615.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130622.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130706.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130713.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130720.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130727.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130805.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130816.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130824.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130831.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130907.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130921.patch.gz
-	ftp://invisible-island.net/ncurses/${VERSION}/ncurses-${VERSION}-20130928.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130504-patch.sh.bz2
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130511.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130518.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130525.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130608.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130615.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130622.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130706.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130713.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130720.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130727.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130805.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130816.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130824.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130831.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130907.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130921.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20130928.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131005.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131012.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131014.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131019.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131027.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131102.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131110.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-${VERSION}.patch.gz
 "
 
 src_compile() {
