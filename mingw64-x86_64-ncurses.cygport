@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-ncurses"
-VERSION=5.9-20131116
+VERSION=5.9-20140201
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="ncurses for Win64 toolchain"
@@ -39,6 +39,13 @@ PATCH_URI="
 	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131027.patch.gz
 	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131102.patch.gz
 	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131110.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131116.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131123.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131207.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131214.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20131221.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20140118.patch.gz
+	ftp://invisible-island.net/ncurses/5.9/ncurses-5.9-20140125.patch.gz
 	ftp://invisible-island.net/ncurses/5.9/ncurses-${VERSION}.patch.gz
 "
 
