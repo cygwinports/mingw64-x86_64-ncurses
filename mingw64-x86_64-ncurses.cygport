@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-ncurses"
-VERSION=5.9-20140524
+VERSION=5.9-20141018
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="ncurses for Win64 toolchain"
