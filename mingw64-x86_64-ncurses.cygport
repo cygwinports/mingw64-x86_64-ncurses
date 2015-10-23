@@ -2,8 +2,8 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-ncurses"
-VERSION=5.9-20150530
-RELEASE=1
+VERSION=6.0
+RELEASE=1.20151017
 CATEGORY="Devel"
 SUMMARY="ncurses for Win64 toolchain"
 DESCRIPTION="The ncurses (new curses) library is a free software emulation of
@@ -11,8 +11,15 @@ curses in System V Release 4.0, and more. It uses terminfo format, supports
 pads and color and multiple highlights and forms characters and function-key
 mapping, and has all the other SYSV-curses enhancements over BSD curses."
 HOMEPAGE="http://invisible-island.net/ncurses/"
-SRC_URI="ftp://invisible-island.net/ncurses/current/ncurses-${VERSION}.tgz"
+SRC_URI="ftp://invisible-island.net/ncurses/ncurses-${VERSION}.tar.gz"
 SRC_DIR="ncurses-${VERSION}"
+for p in 20150810 20150815 20150822 \
+	 20150905 20150912 20150919 20150926 \
+	 20151010 20151017
+do
+PATCH_URI+=" ftp://invisible-island.net/pub/ncurses/${VERSION}/ncurses-${VERSION}-$p.patch.gz"
+done
+unset p
 
 src_compile() {
 	cd ${B}
@@ -57,7 +64,7 @@ src_install() {
 	done
 	popd
 
-	dosym ncursesw5-config ${CROSS_BINDIR}/ncurses5-config
+	dosym ncursesw6-config ${CROSS_BINDIR}/ncurses6-config
 }
 
 KEEP_LA_FILES="none"
