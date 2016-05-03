@@ -3,7 +3,7 @@ inherit cross
 
 NAME="mingw64-x86_64-ncurses"
 VERSION=6.0
-RELEASE=4.20160305
+RELEASE=5.20160423
 CATEGORY="Devel"
 SUMMARY="ncurses for Win64 toolchain"
 DESCRIPTION="The ncurses (new curses) library is a free software emulation of
@@ -11,20 +11,8 @@ curses in System V Release 4.0, and more. It uses terminfo format, supports
 pads and color and multiple highlights and forms characters and function-key
 mapping, and has all the other SYSV-curses enhancements over BSD curses."
 HOMEPAGE="http://invisible-island.net/ncurses/"
-SRC_URI="ftp://invisible-island.net/ncurses/ncurses-${VERSION}.tar.gz"
-SRC_DIR="ncurses-${VERSION}"
-for p in 20150810 20150815 20150822 \
-	 20150905 20150912 20150919 20150926 \
-	 20151010 20151017 20151024 \
-	 20151101 20151107 20151121 20151128 \
-	 20151205 20151212 20151219 20151226 \
-	 20160102 20160116 20160123 20160130 \
-	 20160206 20160213 20160220 \
-	 20160305
-do
-PATCH_URI+=" ftp://invisible-island.net/pub/ncurses/${VERSION}/ncurses-${VERSION}-$p.patch.gz"
-done
-unset p
+SRC_URI="ftp://invisible-island.net/ncurses/current/ncurses-${VERSION}-${RELEASE#*.}.tgz"
+SRC_DIR="ncurses-${VERSION}-${RELEASE#*.}"
 
 src_compile() {
 	cd ${B}
