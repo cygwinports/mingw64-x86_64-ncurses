@@ -3,7 +3,7 @@ inherit cross
 
 NAME="mingw64-x86_64-ncurses"
 VERSION=6.0
-RELEASE=9.20170121
+RELEASE=10.20170325
 CATEGORY="Devel"
 SUMMARY="ncurses for Win64 toolchain"
 DESCRIPTION="The ncurses (new curses) library is a free software emulation of
